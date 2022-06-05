@@ -75,28 +75,44 @@ function draw() {
   playerArcher.display();
   computerArcher.display()
 
- // Descomente o bloco de código e use o loop for correto para exibir a flecha usando a função showArrow() 
- for (var i=0; i<playerArrows.length; i++) 
- {
- showArrows(i, playerArrows);
+
+  for (var i=0; i<playerArrows.length; i++) 
+  {
+  showArrows(i, playerArrows);
+  }
+
+
+ // for (var i=0; i<playerArrows.length; i++) 
+ //{
+ // showArrows(playerArrows, i);
+ // }
+
+
+
+
+
+}
+
+
+ function keyPressed() {
+   if(keyCode === 32){
+     
+     var posX = playerArcher.body.position.x;
+     var posY = playerArcher.body.position.y;
+     var angle = playerArcher.body.angle+PI/2;
+     var arrow = new PlayerArrow(posX, posY, 100, 10);
+     arrow.trajectory = [];
+     Matter.Body.setAngle(arrow.body, angle);
+     playerArrows.push(arrow);
+   }
  }
 
-}
 
 
 
-function keyPressed() {
-  if(keyCode === 32){
-    // crie um objeto arrow (flecha) e adicione a uma matriz ; defina seu ângulo igual ao ângulo do playerArcher (flecha do jogador)
-    var posX = playerArcher.body.position.x;
-    var posY = playerArcher.body.position.y;
-    var angle = playerArcher.body.angle+PI/2;
-    var arrow = new PlayerArrow(posX, posY, 100, 10);
-    arrow.trajectory = [];
-    Matter.Body.setAngle(arrow.body, angle);
-    playerArrows.push(arrow);
-  }
-}
+
+
+
 
 function keyReleased () {
 
